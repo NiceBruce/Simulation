@@ -1,4 +1,4 @@
-package code.rtfmyoumust.warcraft2simulation;
+package code.rtfmyoumust.simulation;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
