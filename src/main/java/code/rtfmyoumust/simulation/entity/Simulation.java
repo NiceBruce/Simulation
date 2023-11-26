@@ -1,4 +1,4 @@
-package code.rtfmyoumust.simulation.model;
+package code.rtfmyoumust.simulation.entity;
 
 public class Simulation {
     private Map map;

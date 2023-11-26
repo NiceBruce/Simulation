@@ -1,4 +1,4 @@
-package code.rtfmyoumust.simulation.model.livingEntities;
+package code.rtfmyoumust.simulation.entity.livingEntities;
 
 public class Predator extends Creature {
 
