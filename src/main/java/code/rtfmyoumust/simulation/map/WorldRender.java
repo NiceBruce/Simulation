@@ -1,36 +1,48 @@
 package code.rtfmyoumust.simulation.map;
 
 import code.rtfmyoumust.simulation.model.Entity;
+import code.rtfmyoumust.simulation.model.livingEntities.Creature;
 
 public class WorldRender {
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_EARTH_COLOR = "\u001B[48;2;1;168;1m";
-    private World world;
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_EARTH_COLOR = "\u001B[48;2;1;168;1m";
+    private static final String ANSI_DAMAGE_HEALT_COLOR = "\u001B[48;2;255;255;0m";
+    private static final String ANSI_LOW_HEALTH_COLOR = "\u001B[48;2;255;0;0m";
 
-    public WorldRender(World map) {
-        this.world = map;
-    }
+    public static final void renderMap(World world, int countSimulation) {
+//        System.out.print("[Simulation iteration# " + countSimulation + "] ");
+//        world.printCountEntity();
 
-    public void renderMap() {
-        world.printCountEntity();
-        for (int y = world.getGRID_SIZE_BY_Y(); y >= 0; y--) {
+        for (int y = world.getGRID_HEIGHT(); y >= 0; y--) {
             String line = "";
-            for (int x = 0; x <= world.getGRID_SIZE_BY_X(); x++) {
+            for (int x = 0; x <= world.getGRID_WIDTH(); x++) {
                 Coordinates coordinates = new Coordinates(x, y);
                 if (world.isPositionEmpty(coordinates)) {
                     line += ANSI_EARTH_COLOR + "\uD83D\uDFE9" +  " ";
                 } else {
-                    line += ANSI_EARTH_COLOR + selectUnicodeForEntity(world.getEntity(coordinates)) + " ";
+                    if (world.getEntity(new Coordinates(x, y)) instanceof Creature) {
+                        Creature creature = (Creature) world.getEntity(new Coordinates(x, y));
+                        if (creature.getHp() < 100 && creature.getHp() > 50) {
+                            line += ANSI_DAMAGE_HEALT_COLOR + selectUnicodeForEntity(world.getEntity(coordinates)) + " ";
+                        } else if (creature.getHp() <= 50 ) {
+                            line += ANSI_LOW_HEALTH_COLOR + selectUnicodeForEntity(world.getEntity(coordinates)) + " ";
+                        } else {
+                            line += ANSI_EARTH_COLOR + selectUnicodeForEntity(world.getEntity(coordinates)) + " ";
+                        }
+                    } else {
+                        line += ANSI_EARTH_COLOR + selectUnicodeForEntity(world.getEntity(coordinates)) + " ";
+                    }
                 }
             }
             line = line.stripTrailing();
             line += ANSI_RESET;
             System.out.println(line);
         }
+//        System.out.println("Press 'p' to Pause, Press 'r' to Resume, press 'q' to Quit");
     }
 
-    public String selectUnicodeForEntity(Entity entity) {
+    public static final String selectUnicodeForEntity(Entity entity) {
 
         switch (entity.getClass().getSimpleName()) {
             case "Herbivore":
