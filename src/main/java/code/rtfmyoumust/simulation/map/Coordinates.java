@@ -6,9 +6,9 @@ public class Coordinates {
     private Integer x;
     private Integer y;
 
-    public Coordinates(Integer latitude, Integer longitude) {
-        this.x = latitude;
-        this.y = longitude;
+    public Coordinates(Integer x, Integer y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void setCoordinates(Integer latitude, Integer longitude) {
@@ -32,5 +32,13 @@ public class Coordinates {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    public Integer getX() {
+        return x;
+    }
+
+    public Integer getY() {
+        return y;
     }
 }
