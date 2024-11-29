@@ -1,5 +1,7 @@
 package code.rtfmyoumust.simulation;
 
+import code.rtfmyoumust.simulation.core.Simulation;
+
 import java.io.IOException;
 
 public class Main {

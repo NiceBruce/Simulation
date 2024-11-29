@@ -1,4 +1,4 @@
-package code.rtfmyoumust.simulation;
+package code.rtfmyoumust.simulation.core;
 
 import code.rtfmyoumust.simulation.map.World;
 

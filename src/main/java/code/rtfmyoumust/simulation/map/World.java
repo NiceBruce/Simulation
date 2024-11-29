@@ -2,12 +2,11 @@ package code.rtfmyoumust.simulation.map;
 
 import code.rtfmyoumust.simulation.model.Entity;
 import code.rtfmyoumust.simulation.model.EntityFactory;
-import code.rtfmyoumust.simulation.model.livingEntities.Creature;
-import code.rtfmyoumust.simulation.model.livingEntities.Herbivore;
-import code.rtfmyoumust.simulation.model.livingEntities.Predator;
-import code.rtfmyoumust.simulation.model.staticEntities.Grass;
+import code.rtfmyoumust.simulation.model.alive.Creature;
+import code.rtfmyoumust.simulation.model.alive.Herbivore;
+import code.rtfmyoumust.simulation.model.alive.Predator;
+import code.rtfmyoumust.simulation.model.inanimate.Grass;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

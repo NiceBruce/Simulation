@@ -1,9 +1,8 @@
-package code.rtfmyoumust.simulation.model.livingEntities;
+package code.rtfmyoumust.simulation.model.alive;
 
 import code.rtfmyoumust.simulation.map.Coordinates;
 import code.rtfmyoumust.simulation.model.Entity;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Creature extends Entity {

@@ -1,4 +1,4 @@
-package code.rtfmyoumust.simulation.model.livingEntities;
+package code.rtfmyoumust.simulation.model.alive;
 
 import code.rtfmyoumust.simulation.map.Coordinates;
 import code.rtfmyoumust.simulation.model.Entity;

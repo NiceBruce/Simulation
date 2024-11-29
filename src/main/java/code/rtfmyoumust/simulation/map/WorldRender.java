@@ -1,7 +1,7 @@
 package code.rtfmyoumust.simulation.map;
 
 import code.rtfmyoumust.simulation.model.Entity;
-import code.rtfmyoumust.simulation.model.livingEntities.Creature;
+import code.rtfmyoumust.simulation.model.alive.Creature;
 
 public class WorldRender {
     private static final String ANSI_RESET = "\u001B[0m";

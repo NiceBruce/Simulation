@@ -1,10 +1,9 @@
 package code.rtfmyoumust.simulation.model;
 
 import code.rtfmyoumust.simulation.map.Coordinates;
-import code.rtfmyoumust.simulation.model.livingEntities.Creature;
-import code.rtfmyoumust.simulation.model.livingEntities.Herbivore;
-import code.rtfmyoumust.simulation.model.livingEntities.Predator;
-import code.rtfmyoumust.simulation.model.staticEntities.Grass;
+import code.rtfmyoumust.simulation.model.alive.Herbivore;
+import code.rtfmyoumust.simulation.model.alive.Predator;
+import code.rtfmyoumust.simulation.model.inanimate.Grass;
 
 public class EntityFactory {
 

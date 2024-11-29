@@ -1,10 +1,10 @@
-package code.rtfmyoumust.simulation;
+package code.rtfmyoumust.simulation.core;
 
 import code.rtfmyoumust.simulation.map.Coordinates;
 import code.rtfmyoumust.simulation.map.World;
 import code.rtfmyoumust.simulation.map.WorldFactory;
 import code.rtfmyoumust.simulation.model.Entity;
-import code.rtfmyoumust.simulation.model.livingEntities.Creature;
+import code.rtfmyoumust.simulation.model.alive.Creature;
 import code.rtfmyoumust.simulation.search.engine.BFS;
 
 import java.util.List;
