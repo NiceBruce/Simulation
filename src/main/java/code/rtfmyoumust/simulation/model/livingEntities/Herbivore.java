@@ -1,47 +1,30 @@
 package code.rtfmyoumust.simulation.model.livingEntities;
 
 import code.rtfmyoumust.simulation.map.Coordinates;
-import code.rtfmyoumust.simulation.model.staticEntities.Grass;
+import code.rtfmyoumust.simulation.model.Entity;
 
 import java.util.List;
 
 public class Herbivore extends Creature {
+    private int heathRecoveryFromEating;
 
-    private int herbivoreCount = 0;
-    private Class<?> targetType = Grass.class;
-    private int speed = 1;
-
-    public Herbivore(Coordinates coordinates) {
-        super(coordinates);
-        this.herbivoreCount = this.getCreatureCount();
+    public Herbivore(Coordinates coordinates, int hp, int speed, Class<?> targetType, int healthLoss, int hpRecovery) {
+        super(coordinates, hp, speed, targetType, healthLoss);
+        this.heathRecoveryFromEating = hpRecovery;
     }
 
     @Override
-    public void makeMove(List<Coordinates> path) {
+    public void makeMove(List<Coordinates> path, Entity entity) {
         if (!path.isEmpty()) {
-            if (path.size() > 2) this.feelHungry();
+            if (path.size() == CLOSE_TO_TARGET) this.eat();
+            if (path.size() > CLOSE_TO_TARGET) this.feelHungry();
             setCoordinates(path.get(path.size() == 1 ? 0 : speed));
+        } else {
+            this.setHp(this.getHp() - hungerHealthLoss);
         }
     }
 
-    @Override
-    public Class<?> getTargetType() {
-        return targetType;
-    }
-
-    @Override
-    public void feelHungry() {
-        this.setHp(this.getHp() - 10);
-    }
-
-    @Override
-    public void getStatistics() {
-        System.out.println(String.format("[Herbivore #%s, position: [%s, %s], HP: %s, Status: %s]",
-                this.herbivoreCount,
-                this.getCoordinates().getX(),
-                this.getCoordinates().getY(),
-                this.getHp(),
-                this.getHp() <= 0 ? "Died" : "Alive and Hungry!"
-        ));
+    public void eat() {
+        this.setHp(this.getHp() + heathRecoveryFromEating);
     }
 }
