@@ -2,6 +2,7 @@ package code.rtfmyoumust.simulation.map;
 
 import code.rtfmyoumust.simulation.model.Entity;
 import code.rtfmyoumust.simulation.model.EntityFactory;
+import code.rtfmyoumust.simulation.model.livingEntities.Creature;
 import code.rtfmyoumust.simulation.model.livingEntities.Herbivore;
 import code.rtfmyoumust.simulation.model.livingEntities.Predator;
 import code.rtfmyoumust.simulation.model.staticEntities.Grass;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class World {
 
@@ -26,13 +28,16 @@ public class World {
         return entities.get(coordinates);
     }
 
-    public List<Entity> getEntities() {
-        return new ArrayList<>(this.entities.values());
+    public List<Creature> getCreatures() {
+        return this.entities.values().stream()
+                .filter(Creature.class::isInstance)
+                .map(Creature.class::cast)
+                .collect(Collectors.toList());
     }
 
     public void setEntity(Coordinates coordinates, Class<? extends Entity> entityType) {
         Entity entity = EntityFactory.createEntity(entityType, coordinates);
-        entity.coordinates = coordinates;
+        entity.setCoordinates(coordinates);
         entities.put(coordinates, entity);
     }
 
