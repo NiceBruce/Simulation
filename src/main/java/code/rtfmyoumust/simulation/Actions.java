@@ -12,10 +12,11 @@ import code.rtfmyoumust.simulation.search.engine.BFS;
 import java.util.List;
 
 public class Actions {
-
-    World world;
-    WorldFactory worldFactory = new WorldFactory();
-    BFS bfs = new BFS();
+    private World world;
+    private WorldFactory worldFactory = new WorldFactory();
+    private BFS bfs = new BFS();
+    private static final int WORLD_SIZE_BY_X = 5;
+    private static final int WORLD_SIZE_BY_Y = 5;
 
     /*
     *
@@ -29,57 +30,42 @@ public class Actions {
 
     // Действия, совершаемые перед стартом симуляции
     public World initActions() {
-        this.world = worldFactory.createWorld(5, 5);
+        this.world = worldFactory.createWorld(WORLD_SIZE_BY_X, WORLD_SIZE_BY_Y);
         return this.world;
     };
 
     // Действия, совершаемые каждый ход.
     public void turnActions() {
-        List<Entity> entities = world.getEntities();
+        List<Creature> creatures = world.getCreatures();
+        addEntities();
+        makeMoveAllCreatures(creatures);
+    }
 
+    public void addEntities(){
         this.world.countEntity().forEach((entity, count) -> {
             if (count <= 1) this.worldFactory.addEntity(world, entity);
         });
+    }
 
-        for (Entity entity : entities) {
-            if (entity instanceof Creature) {
-                Creature creature = (Creature) entity;
-                Coordinates oldPosition = creature.getCoordinates();
+    public void makeMoveAllCreatures(List<Creature> creatures) {
+        for (Creature creature : creatures) {
+            Coordinates oldPosition = creature.getCoordinates();
 
-                if (world.getEntity(oldPosition).getClass() != creature.getClass()) {
-                    continue;
-                }
-
-                if (creature.getHp() <= 0) {
-                    world.removeCreature(oldPosition);
-                    continue;
-                }
-
-
-                List<Coordinates> path = bfs.getSource(world, creature.getCoordinates(), creature, creature.getTargetType());
-
-                if (path.isEmpty()) creature.setHp(creature.getHp() - 10);
-
-                if (creature.getClass() == Predator.class && path.size() == 2) {
-                    Predator predator = (Predator) creature;
-                    Herbivore target = (Herbivore) world.getEntity(path.get(path.size() - 1));
-                    target.setHp(predator.atack(target.getHp()));
-                    predator.setHp(predator.getHp() + 40);
-                    if (target.getHp() <= 0) {
-                        predator.makeMove(path);
-                        world.shiftEntity(oldPosition, creature.getCoordinates(), creature);
-                    }
-                } else if (creature.getClass() == Herbivore.class && path.size() == 2) {
-                    Herbivore herbivore = (Herbivore) creature;
-                    herbivore.setHp(herbivore.getHp() + 40);
-                    herbivore.makeMove(path);
-                    world.shiftEntity(oldPosition, creature.getCoordinates(), creature);
-                } else {
-                    creature.makeMove(path);
-                    world.shiftEntity(oldPosition, creature.getCoordinates(), creature);
-                }
-//                creature.getStatistics();
+            if (world.getEntity(oldPosition).getClass() != creature.getClass()) {
+                continue;
             }
+
+            if (creature.getHp() <= 0) {
+                world.removeCreature(oldPosition);
+                continue;
+            }
+
+            List<Coordinates> pathToTarget = bfs.findPathBFS(world, creature, creature.getTargetType());
+            Entity entity = (!pathToTarget.isEmpty()) ? world.getEntity(pathToTarget.get(pathToTarget.size() - 1)) : null;
+            creature.makeMove(pathToTarget, entity);
+            world.shiftEntity(oldPosition, creature.getCoordinates(), creature);
+
+            creature.getStatistics();
         }
-    };
+    }
 }
