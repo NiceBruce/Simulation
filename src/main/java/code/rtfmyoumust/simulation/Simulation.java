@@ -13,18 +13,15 @@ public class Simulation {
     private Integer countMove = 0;
     private Actions actions = new Actions();
     private boolean pauseSimulation = false;
-
     private static final int LOOP_TIME_DELAY_MS = 2000;
 
     public void nextTurn() {
         actions.turnActions();
         renderMap(this.world, countMove);
-
     }
 
     public void startSimulation() throws InterruptedException, IOException {
         Scanner scanner = new Scanner(System.in);
-        Thread.sleep(LOOP_TIME_DELAY_MS);
         this.world = this.actions.initActions();
         renderMap(this.world, countMove);
 
@@ -44,15 +41,6 @@ public class Simulation {
     }
 
     public void pauseSimulation(String userInput) {
-        switch (userInput) {
-            case "p": {
-                this.pauseSimulation = true;
-                break;
-            }
-            case "r": {
-                this.pauseSimulation = false;
-                break;
-            }
-        }
+        this.pauseSimulation = "p".equals(userInput);
     }
 }
