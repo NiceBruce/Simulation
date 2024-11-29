@@ -5,8 +5,6 @@ import code.rtfmyoumust.simulation.map.World;
 import code.rtfmyoumust.simulation.map.WorldFactory;
 import code.rtfmyoumust.simulation.model.Entity;
 import code.rtfmyoumust.simulation.model.livingEntities.Creature;
-import code.rtfmyoumust.simulation.model.livingEntities.Herbivore;
-import code.rtfmyoumust.simulation.model.livingEntities.Predator;
 import code.rtfmyoumust.simulation.search.engine.BFS;
 
 import java.util.List;
@@ -18,23 +16,11 @@ public class Actions {
     private static final int WORLD_SIZE_BY_X = 5;
     private static final int WORLD_SIZE_BY_Y = 5;
 
-    /*
-    *
-    * Действие, совершаемое над миром.
-    * Например - сходить всеми существами.
-    * Это действие итерировало бы существ и вызывало каждому makeMove().
-    * Каждое действие описывается отдельным классом и совершает операции над картой.
-    * Симуляция содержит 2 массива действий:
-    *
-    * */
-
-    // Действия, совершаемые перед стартом симуляции
     public World initActions() {
         this.world = worldFactory.createWorld(WORLD_SIZE_BY_X, WORLD_SIZE_BY_Y);
         return this.world;
     };
 
-    // Действия, совершаемые каждый ход.
     public void turnActions() {
         List<Creature> creatures = world.getCreatures();
         addEntities();
