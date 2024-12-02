@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class World {
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public World(int x, int y) {
@@ -62,9 +62,9 @@ public class World {
     }
 
     public Map<Class<? extends Entity>, Integer> countEntity() {
-        Integer herbivoreCount = 0;
-        Integer predatorsCount = 0;
-        Integer grassCount = 0;
+        int herbivoreCount = 0;
+        int predatorsCount = 0;
+        int grassCount = 0;
 
         for (Map.Entry<Coordinates, Entity> entity : entities.entrySet()) {
             switch (entity.getValue().getClass().getSimpleName()) {
