@@ -31,7 +31,7 @@ public class WorldFactory {
     }
 
 
-    public World createWorld(int sizeByX, int sizeByY) {
+    public World create(int sizeByX, int sizeByY) {
         this.world = new World(sizeByX, sizeByY);
         this.entityPercent = (int) (sizeByX * sizeByY * DISTRIBUTION_COEFF_OF_CREATURE);
 
@@ -49,10 +49,10 @@ public class WorldFactory {
         return world;
     }
 
-    public World addEntity(World world, Class<? extends Entity> entity) {
+    public World addEntities(World world, Class<? extends Entity> entity) {
         this.world = world;
         for (int i = 0; i <= this.entityPercent; i++) {
-            world.setEntity(generateRandomEmptyCoordinates(world.getGRID_WIDTH(), world.getGRID_HEIGHT()), entity);
+            world.setEntity(generateRandomEmptyCoordinates(world.getX(), world.getY()), entity);
         }
         return this.world;
     }
