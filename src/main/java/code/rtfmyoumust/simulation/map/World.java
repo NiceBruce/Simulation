@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class World {
 
-    private int x;
-    private int y;
-    private HashMap<Coordinates, Entity> entities = new HashMap<>();
+    private final int x;
+    private final int y;
+    private final HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public World(int x, int y) {
         this.x = x;
