@@ -24,11 +24,11 @@ public class Coordinates {
         return Objects.hash(x, y);
     }
 
-    public Integer getX() {
+    public int getX() {
         return x;
     }
 
-    public Integer getY() {
+    public int getY() {
         return y;
     }
 }
