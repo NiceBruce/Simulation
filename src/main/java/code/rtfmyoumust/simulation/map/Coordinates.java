@@ -6,19 +6,9 @@ public class Coordinates {
     private Integer x;
     private Integer y;
 
-    public Coordinates(Integer x, Integer y) {
+    public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public void setCoordinates(Integer latitude, Integer longitude) {
-        this.x = latitude;
-        this.y = longitude;
-    }
-
-    public int distance(Coordinates targetCoordinates) {
-        return (int) Math.sqrt(Math.pow(this.x - targetCoordinates.x, 2) +
-                Math.pow(this.y - targetCoordinates.y, 2));
     }
 
     @Override
