@@ -3,8 +3,8 @@ package code.rtfmyoumust.simulation.map;
 import java.util.Objects;
 
 public class Coordinates {
-    private Integer x;
-    private Integer y;
+    private final int x;
+    private final int y;
 
     public Coordinates(int x, int y) {
         this.x = x;
