@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 public class World {
 
-    private final int GRID_WIDTH;
-    private final int GRID_HEIGHT;
+    private final int x;
+    private final int y;
     private HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public World(int x, int y) {
-        GRID_WIDTH = x;
-        GRID_HEIGHT = y;
+        this.x = x;
+        this.y = y;
     }
 
     public Entity getEntity(Coordinates coordinates) {
@@ -53,12 +53,12 @@ public class World {
         return !entities.containsKey(coordinates);
     }
 
-    public int getGRID_WIDTH() {
-        return GRID_WIDTH;
+    public int getX() {
+        return x;
     }
 
-    public int getGRID_HEIGHT() {
-        return GRID_HEIGHT;
+    public int getY() {
+        return y;
     }
 
     public Map<Class<? extends Entity>, Integer> countEntity() {
