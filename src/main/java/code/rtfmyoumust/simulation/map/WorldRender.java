@@ -13,9 +13,9 @@ public class WorldRender {
         System.out.print("[Simulation iteration# " + countSimulation + "] ");
         world.printCountEntity();
 
-        for (int y = world.getGRID_HEIGHT(); y >= 0; y--) {
+        for (int y = world.getY(); y >= 0; y--) {
             String line = "";
-            for (int x = 0; x <= world.getGRID_WIDTH(); x++) {
+            for (int x = 0; x <= world.getX(); x++) {
                 Coordinates coordinates = new Coordinates(x, y);
                 if (world.isPositionEmpty(coordinates)) {
                     line += ANSI_EARTH_COLOR + "\uD83D\uDFE9" +  " ";
@@ -43,9 +43,9 @@ public class WorldRender {
                 return "\uD83E\uDEA8";
             case "Tree":
                 return "\uD83C\uDF33";
+            default:
+                return "";
         }
-
-        return "";
     }
 
     public static String colorEntity(Entity entity) {
@@ -70,5 +70,4 @@ public class WorldRender {
 
         return line + selectUnicodeForEntity(creature) + " ";
     }
-
 }
