@@ -44,7 +44,7 @@ public class WorldRender {
             case "Tree":
                 return "\uD83C\uDF33";
             default:
-                return "";
+                throw new IllegalArgumentException("Неизвестный тип объекта: " + entity.getClass().getSimpleName());
         }
     }
 
