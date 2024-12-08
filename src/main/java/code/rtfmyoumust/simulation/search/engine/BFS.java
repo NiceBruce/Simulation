@@ -3,12 +3,6 @@ package code.rtfmyoumust.simulation.search.engine;
 import code.rtfmyoumust.simulation.map.Coordinates;
 import code.rtfmyoumust.simulation.map.World;
 import code.rtfmyoumust.simulation.model.Entity;
-import code.rtfmyoumust.simulation.model.alive.Creature;
-import code.rtfmyoumust.simulation.model.alive.Herbivore;
-import code.rtfmyoumust.simulation.model.alive.Predator;
-import code.rtfmyoumust.simulation.model.inanimate.Grass;
-import code.rtfmyoumust.simulation.model.inanimate.Rock;
-import code.rtfmyoumust.simulation.model.inanimate.Tree;
 
 import java.util.*;
 
